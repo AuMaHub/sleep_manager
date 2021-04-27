@@ -1,14 +1,23 @@
+import 'dart:isolate';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:sleep_manager/test.dart';
 import 'package:sleep_manager/utils/uidata.dart';
 import 'package:sleep_manager/widget/cycle_item.dart';
+import 'package:android_alarm_manager/android_alarm_manager.dart';
 
 bool darkmode = true;
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   runApp(MyApp());
+}
+
+void printHello() {
+  final DateTime now = DateTime.now();
+  final int isolateId = Isolate.current.hashCode;
+  print("[$now] Hello, world! isolate=${isolateId} function='$printHello'");
 }
 
 class MyApp extends StatelessWidget {
